@@ -51,6 +51,8 @@ public class UserService {
         }
 
         loggedUser.login();
+        loggedUser.setUsername(userLoginDTO.getUsername());
+
         return true;
     }
 
