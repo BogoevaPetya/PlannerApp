@@ -2,16 +2,22 @@ package com.plannerapp.model.dtos;
 
 import com.plannerapp.model.annotations.StringDateInFuture;
 import com.plannerapp.model.enums.PriorityName;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 public class TaskDTO {
     private Long id;
     @Size(min = 2, max = 50)
     private String description;
-    @StringDateInFuture
-    private String dueDate;
+//    @StringDateInFuture
+    @FutureOrPresent
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dueDate;
     @NotNull
     private PriorityName priority;
 
@@ -24,11 +30,11 @@ public class TaskDTO {
         this.description = description;
     }
 
-    public String getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 

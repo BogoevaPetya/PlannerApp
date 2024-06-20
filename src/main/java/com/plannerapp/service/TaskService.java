@@ -83,7 +83,8 @@ public class TaskService {
         taskDTO.setId(task.getId());
         taskDTO.setDescription(task.getDescription());
         taskDTO.setPriority(task.getPriority().getName());
-        taskDTO.setDueDate(String.valueOf(task.getDueDate()));
+        //taskDTO.setDueDate(String.valueOf(task.getDueDate()));
+        taskDTO.setDueDate(task.getDueDate());
         return taskDTO;
     }
 }
