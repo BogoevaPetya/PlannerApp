@@ -28,11 +28,18 @@ public class TaskController {
 
     @GetMapping("/tasks/add")
     public String addTask(){
+        if (!loggedUser.isLogged()){
+            return "redirect:/";
+        }
         return "task-add";
     }
 
     @PostMapping("/tasks/add")
     public String addTask(@Valid AddTaskDTO addTaskDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+        if (!loggedUser.isLogged()){
+            return "redirect:/";
+        }
+
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("addTaskDTO", addTaskDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addTaskDTO", bindingResult);
@@ -45,18 +52,30 @@ public class TaskController {
 
     @DeleteMapping("/tasks/remove/{id}")
     public String removeTask(@PathVariable("id") Long id){
+        if (!loggedUser.isLogged()){
+            return "redirect:/";
+        }
+
         taskService.remove(id);
         return "redirect:/home";
     }
 
     @PostMapping("/tasks/return/{id}")
     public String returnTask(@PathVariable("id") Long id){
+        if (!loggedUser.isLogged()){
+            return "redirect:/";
+        }
+
         taskService.assign(id, null);
         return "redirect:/home";
     }
 
     @PostMapping("/tasks/assign/{id}")
     public String assign(@PathVariable("id") Long id){
+        if (!loggedUser.isLogged()){
+            return "redirect:/";
+        }
+
         taskService.assign(id, loggedUser.getUsername());
         return "redirect:/home";
     }

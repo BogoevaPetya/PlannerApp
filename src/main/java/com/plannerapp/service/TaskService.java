@@ -21,14 +21,12 @@ import java.util.stream.Collectors;
 @Service
 public class TaskService {
     private final TaskRepository taskRepository;
-    private final ModelMapper modelMapper;
     private final PriorityRepository priorityRepository;
     private final UserRepository userRepository;
     private final LoggedUser loggedUser;
 
-    public TaskService(TaskRepository taskRepository, ModelMapper modelMapper, PriorityRepository priorityRepository, UserRepository userRepository, LoggedUser loggedUser) {
+    public TaskService(TaskRepository taskRepository, PriorityRepository priorityRepository, UserRepository userRepository, LoggedUser loggedUser) {
         this.taskRepository = taskRepository;
-        this.modelMapper = modelMapper;
         this.priorityRepository = priorityRepository;
         this.userRepository = userRepository;
         this.loggedUser = loggedUser;
