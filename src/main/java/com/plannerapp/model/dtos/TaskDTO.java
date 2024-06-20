@@ -17,6 +17,7 @@ public class TaskDTO {
 //    @StringDateInFuture
     @FutureOrPresent
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
     private LocalDate dueDate;
     @NotNull
     private PriorityName priority;
